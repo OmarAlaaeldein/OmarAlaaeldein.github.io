@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omar Alaaeldein | Data Scientist</title>
+  <meta name="description" content="Full-stack Data Scientist with expertise in Edge AI/IoT and FinTech. MSc candidate at Polytechnique Montreal.">
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --bg-card: #1a1a1a;
+      --bg-card-hover: #222;
+      --accent: #4fc3f7;
+      --accent-dim: #2a7da8;
+      --text: #e0e0e0;
+      --text-muted: #999;
+      --text-heading: #fff;
+      --border: #2a2a2a;
+      --tag-bg: #1e2a35;
+      --tag-text: #4fc3f7;
+      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-dim) var(--bg);
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    a:hover { opacity: 0.8; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(15, 15, 15, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+    nav .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    nav .logo {
+      font-weight: 700;
+      color: var(--text-heading);
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+    nav .logo span { color: var(--accent); }
+    nav .nav-links { display: flex; gap: 1.8rem; }
+    nav .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover { color: var(--accent); opacity: 1; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 2rem 2rem;
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+
+    h1 { font-size: 3.2rem; color: var(--text-heading); line-height: 1.15; letter-spacing: -0.03em; }
+    h2 { font-size: 1.4rem; color: var(--text-heading); letter-spacing: -0.01em; }
+    h3 { font-size: 1.1rem; color: var(--text-heading); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 56px;
+    }
+    .hero .subtitle {
+      font-family: var(--mono);
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+    .hero h1 { margin-bottom: 1.5rem; }
+    .hero .summary {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .hero .links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.9rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .hero .links a:hover {
+      border-color: var(--accent);
+      background: rgba(79, 195, 247, 0.05);
+      opacity: 1;
+    }
+    .hero .links svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      border-left: 2px solid var(--border);
+      padding-left: 1.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+    .exp-header h3 { font-weight: 600; }
+    .exp-role {
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.7rem;
+    }
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .exp-item ul {
+      list-style: none;
+      padding: 0;
+    }
+    .exp-item li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.93rem;
+    }
+    .exp-item li::before {
+      content: '\25B8';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s, background 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--accent-dim);
+      transform: translateY(-2px);
+      background: var(--bg-card-hover);
+    }
+    .project-card h3 {
+      margin-bottom: 0.3rem;
+    }
+    .project-card h3 a {
+      color: var(--text-heading);
+      transition: color 0.2s;
+    }
+    .project-card h3 a:hover { color: var(--accent); opacity: 1; }
+    .project-card .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+    }
+    .project-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      flex: 1;
+    }
+    .project-card .project-link {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+    .skill-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.3rem;
+    }
+    .skill-group h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.7rem;
+      font-weight: 600;
+    }
+    .skill-group .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .skill-tag {
+      font-size: 0.82rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      background: rgba(79, 195, 247, 0.08);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .skill-tag.primary {
+      background: var(--tag-bg);
+      color: var(--accent);
+      border-color: var(--accent-dim);
+      font-weight: 500;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .edu-item h3 { font-weight: 600; }
+    .edu-degree {
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-top: 0.2rem;
+    }
+    .edu-details {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ── PUBLICATIONS ── */
+    .pub-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.3rem 1.5rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: border-color 0.2s;
+    }
+    .pub-item:hover { border-color: var(--accent-dim); }
+    .pub-info { flex: 1; }
+    .pub-venue {
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+    .pub-role {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .pub-link {
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    /* ── CONTACT FOOTER ── */
+    .contact-section {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+    .contact-section h2 { margin-bottom: 1rem; }
+    .contact-section p { color: var(--text-muted); margin-bottom: 1.5rem; }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .contact-links a {
+      padding: 0.55rem 1.3rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.9rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-links a:hover {
+      border-color: var(--accent);
+      background: rgba(79, 195, 247, 0.05);
+      opacity: 1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      section { padding: 4rem 1.2rem 1.5rem; }
+      nav .nav-links { display: none; }
+      nav .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: rgba(15, 15, 15, 0.95);
+        backdrop-filter: blur(12px);
+        padding: 1rem 2rem;
+        border-bottom: 1px solid var(--border);
+        gap: 1rem;
+      }
+      .hamburger { display: flex; }
+      .exp-header { flex-direction: column; }
+      .edu-header { flex-direction: column; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">O<span>.</span>A</div>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="fade-in">
+    <p class="subtitle">Hi, I'm</p>
+    <h1>Omar Alaaeldein</h1>
+    <h2 style="color: var(--accent); font-weight: 400; margin-bottom: 1.2rem; font-size: 1.3rem;">Data Scientist</h2>
+    <p class="summary">
+      Full-stack Data Scientist with expertise in low-latency and resource-constrained environments (Edge AI/IoT, FinTech). Experienced across the ML lifecycle - from framing unstructured problems to deploying real-time inference engines and scalable ETL pipelines in production.
+    </p>
+    <div class="links">
+      <a href="mailto:omaraladdinhamdy@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Email
+      </a>
+      <a href="https://linkedin.com/in/omar-alaaeldein" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/OmarAlaaeldein" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+        GitHub
+      </a>
+      <a href="https://orcid.org/0000-0001-8110-727X" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 5a.9.9 0 110 1.8.9.9 0 010-1.8zm-.6 3h1.2v7h-1.2v-7zm3.1 0h2.6c2.2 0 3.4 1.5 3.4 3.5s-1.2 3.5-3.4 3.5H13v-7zm1.2 1v5h1.3c1.5 0 2.3-.9 2.3-2.5S17 11 15.5 11h-1.3z"/></svg>
+        ORCID
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-title fade-in">Work Experience</p>
+
+  <div class="exp-item fade-in">
+    <div class="exp-header">
+      <h3>Polytechnique Montreal</h3>
+      <span class="exp-date">Jan 2024 &ndash; Present</span>
+    </div>
+    <p class="exp-role">Machine Learning Researcher</p>
+    <ul>
+      <li>Engineered a <strong>low-latency (&lt;1ms) inference engine</strong> for embedded microcontrollers, achieving state-of-the-art performance (98% SoH, 90% RUL) with <strong>30x less training data</strong> under strict memory constraints (&lt;0.5MB).</li>
+      <li>Designed custom <strong>asymmetric loss functions</strong> to solve class imbalance in safety-critical systems, reducing false-negative predictions by ~50%.</li>
+      <li>Developed a <strong>deterministic diagnostic algorithm</strong> with 160 degradation patterns, optimizing logical inference for O(1) constant-memory usage on limited hardware.</li>
+      <li>Proposed <strong>Multi-Task Autoencoders</strong> for anomaly detection in sensor networks, utilizing reconstruction error to estimate intermittent states and reconstruct pack-to-cell topology.</li>
+    </ul>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-header">
+      <h3>Corporatica</h3>
+      <span class="exp-date">Apr 2023 &ndash; Dec 2023</span>
+    </div>
+    <p class="exp-role">Machine Learning Engineer (Full-Time Contract)</p>
+    <ul>
+      <li>Architected scalable <strong>ETL pipelines</strong> for high-frequency Forex data, reducing data availability latency by <strong>45%</strong> to enable real-time modeling.</li>
+      <li>Deployed algorithmic trading models to production on <strong>FluidStack</strong>, balancing compute cost optimization with rigorous security protocols.</li>
+      <li>Established <strong>MLOps standards</strong> for model reproducibility and documentation, streamlining the hand-off between research and production.</li>
+    </ul>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-header">
+      <h3>Egypt-Japan University of Science and Technology</h3>
+      <span class="exp-date">Mar 2021 &ndash; May 2022</span>
+    </div>
+    <p class="exp-role">Undergraduate Researcher</p>
+    <ul>
+      <li>Implemented a deep learning model achieving <strong>96% accuracy</strong> in detecting pulmonary anomalies from CT scans, plus a lightweight audio model for cough detection.</li>
+      <li>Employed pre-trained <strong>DistilBERT</strong> transformers for text classification, improving accuracy from 67% to <strong>86%</strong> via heuristic data augmentation strategies.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-title fade-in">Projects / Open-Source</p>
+  <div class="projects-grid">
+    <div class="project-card fade-in">
+      <h3><a href="https://github.com/OmarAlaaeldein/Unit-Test-Recommender" target="_blank" rel="noopener">Unit Test Recommendation Engine</a></h3>
+      <div class="tags">
+        <span class="tag">LLMs</span>
+        <span class="tag">Semantic Search</span>
+        <span class="tag">Developer Tooling</span>
+      </div>
+      <p>Fine-tuned CodeT5 LLMs using LoRA to automate context-aware test generation. Built a high-performance semantic search backend using FAISS indexing with &lt;50ms latency.</p>
+      <a class="project-link" href="https://github.com/OmarAlaaeldein/Unit-Test-Recommender" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <h3><a href="https://github.com/OmarAlaaeldein/Arena-Simulation-Production-Line-Optimization" target="_blank" rel="noopener">Production Line Optimization</a></h3>
+      <div class="tags">
+        <span class="tag">Simulation</span>
+        <span class="tag">Cost-Benefit Analysis</span>
+      </div>
+      <p>Built discrete-event simulation in Rockwell Arena for a bottlenecked assembly line. Analyzed scenarios across 30 replications, recommending batching for 25&ndash;30% long-term waste reduction.</p>
+      <a class="project-link" href="https://github.com/OmarAlaaeldein/Arena-Simulation-Production-Line-Optimization" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <h3><a href="https://github.com/OmarAlaaeldein/Sentinel-Chimp" target="_blank" rel="noopener">Sentinel - AI Financial Analytics</a></h3>
+      <div class="tags">
+        <span class="tag">Real-Time Data</span>
+        <span class="tag">Financial ML</span>
+      </div>
+      <p>Engineered a multi-threaded trading terminal combining technical indicators with FinBERT sentiment analysis. Implemented pricing models for volatility arbitrage with 3D surface visualization.</p>
+      <a class="project-link" href="https://github.com/OmarAlaaeldein/Sentinel-Chimp" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-title fade-in">Skills</p>
+  <div class="skills-grid">
+    <div class="skill-group fade-in">
+      <h3>Languages</h3>
+      <div class="tags">
+        <span class="skill-tag primary">Python</span>
+        <span class="skill-tag primary">MATLAB</span>
+        <span class="skill-tag">C</span>
+        <span class="skill-tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-group fade-in">
+      <h3>ML / Data</h3>
+      <div class="tags">
+        <span class="skill-tag primary">PyTorch</span>
+        <span class="skill-tag primary">TensorFlow</span>
+        <span class="skill-tag primary">Scikit-Learn</span>
+        <span class="skill-tag primary">Pandas</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">OpenCV</span>
+      </div>
+    </div>
+    <div class="skill-group fade-in">
+      <h3>Databases</h3>
+      <div class="tags">
+        <span class="skill-tag primary">SQL</span>
+        <span class="skill-tag">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-group fade-in">
+      <h3>Tools / Platforms</h3>
+      <div class="tags">
+        <span class="skill-tag primary">Git</span>
+        <span class="skill-tag primary">Docker</span>
+        <span class="skill-tag primary">Arena</span>
+        <span class="skill-tag">LaTeX</span>
+        <span class="skill-tag">Arduino</span>
+        <span class="skill-tag">SOLIDWORKS</span>
+      </div>
+    </div>
+    <div class="skill-group fade-in">
+      <h3>Spoken Languages</h3>
+      <div class="tags">
+        <span class="skill-tag primary">English (C2)</span>
+        <span class="skill-tag primary">Arabic (Native)</span>
+        <span class="skill-tag">French (Learning)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-title fade-in">Education</p>
+
+  <div class="edu-item fade-in">
+    <div class="edu-header">
+      <div>
+        <h3>Polytechnique Montreal</h3>
+        <p class="edu-degree">MSc in Industrial Engineering</p>
+      </div>
+      <span class="exp-date">Jan 2024 &ndash; Present</span>
+    </div>
+    <p class="edu-details">
+      <strong>Focus:</strong> Applied Machine Learning for Energy Systems<br>
+      <strong>Relevant Coursework:</strong> Representation Learning (Mila - IFT 6135)<br>
+      <strong>Expected Graduation:</strong> Summer 2026
+    </p>
+  </div>
+
+  <div class="edu-item fade-in">
+    <div class="edu-header">
+      <div>
+        <h3>Egypt-Japan University of Science and Technology</h3>
+        <p class="edu-degree">BSc in Computer Engineering</p>
+      </div>
+      <span class="exp-date">Sep 2018 &ndash; Feb 2023</span>
+    </div>
+    <p class="edu-details">Alexandria, Egypt</p>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <p class="section-title fade-in">Publications</p>
+
+  <div class="pub-item fade-in">
+    <div class="pub-info">
+      <span class="pub-venue">IEEE IMCOM 2022</span>
+      <span class="pub-role"> -Lead Author</span>
+    </div>
+    <a class="pub-link" href="https://ieeexplore.ieee.org/document/9721730" target="_blank" rel="noopener">View Paper &rarr;</a>
+  </div>
+
+  <div class="pub-item fade-in">
+    <div class="pub-info">
+      <span class="pub-venue">IEEE MIUCC 2022</span>
+      <span class="pub-role"> -Sole Author</span>
+    </div>
+    <a class="pub-link" href="https://ieeexplore.ieee.org/document/9781702" target="_blank" rel="noopener">View Paper &rarr;</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="fade-in">
+    <h2>Get In Touch</h2>
+    <p>I'm always open to discussing ML research, data science, or collaboration opportunities.</p>
+    <div class="contact-links">
+      <a href="mailto:omaraladdinhamdy@gmail.com">omaraladdinhamdy@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built by Omar Alaaeldein</p>
+</footer>
+
+<script>
+  // Intersection Observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Close mobile nav on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
