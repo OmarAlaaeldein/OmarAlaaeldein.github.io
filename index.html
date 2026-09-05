@@ -4,22 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Omar Alaaeldein | Data Scientist</title>
-  <meta name="description" content="Full-stack Data Scientist with expertise in Edge AI/IoT and FinTech. MSc candidate at Polytechnique Montreal.">
+  <meta name="description" content="Data scientist and ML researcher — Edge AI/IoT, FinTech quant tooling, and production ML. MSc candidate at Polytechnique Montréal.">
+  <meta name="theme-color" content="#0b0f14">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="Omar Alaaeldein | Data Scientist">
+  <meta property="og:description" content="Edge AI/IoT, FinTech quant tooling, and production ML. MSc candidate at Polytechnique Montréal.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://omaralaaeldein.github.io/">
+  <link rel="canonical" href="https://omaralaaeldein.github.io/">
   <style>
     :root {
-      --bg: #0f0f0f;
-      --bg-card: #1a1a1a;
-      --bg-card-hover: #222;
-      --accent: #4fc3f7;
-      --accent-dim: #2a7da8;
-      --text: #e0e0e0;
-      --text-muted: #999;
-      --text-heading: #fff;
-      --border: #2a2a2a;
-      --tag-bg: #1e2a35;
-      --tag-text: #4fc3f7;
-      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+      --bg: #0b0f14;
+      --bg-elevated: #10161e;
+      --bg-card: #121a24;
+      --bg-card-hover: #16202c;
+      --accent: #3dd6c6;
+      --accent-dim: #2a9e92;
+      --accent-glow: rgba(61, 214, 198, 0.12);
+      --text: #c8d0d8;
+      --text-muted: #8a96a3;
+      --text-heading: #f0f4f8;
+      --border: #1e2a36;
+      --border-strong: #2a3a4a;
+      --tag-bg: rgba(61, 214, 198, 0.1);
+      --tag-text: #3dd6c6;
+      --font: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace;
+      --nav-h: 56px;
+      --radius: 12px;
+      --max: 1000px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,6 +51,21 @@
       overflow-x: hidden;
     }
 
+    /* Subtle grid wash behind hero */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(61, 214, 198, 0.07), transparent 55%),
+        linear-gradient(rgba(30, 42, 54, 0.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 42, 54, 0.35) 1px, transparent 1px);
+      background-size: auto, 48px 48px, 48px 48px;
+      mask-image: linear-gradient(to bottom, black 0%, transparent 70%);
+    }
+
     ::selection {
       background: var(--accent);
       color: var(--bg);
@@ -46,9 +74,33 @@
     a {
       color: var(--accent);
       text-decoration: none;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, color 0.2s;
     }
-    a:hover { opacity: 0.8; }
+    a:hover { opacity: 0.85; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      z-index: 200;
+      padding: 0.6rem 1rem;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 0.75rem;
+      outline-offset: 2px;
+    }
 
     /* ── NAV ── */
     nav {
@@ -57,18 +109,19 @@
       left: 0;
       right: 0;
       z-index: 100;
-      background: rgba(15, 15, 15, 0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(11, 15, 20, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       padding: 0 2rem;
     }
     nav .nav-inner {
-      max-width: 1000px;
+      max-width: var(--max);
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 56px;
+      height: var(--nav-h);
     }
     nav .logo {
       font-weight: 700;
@@ -77,12 +130,12 @@
       letter-spacing: -0.02em;
     }
     nav .logo span { color: var(--accent); }
-    nav .nav-links { display: flex; gap: 1.8rem; }
+    nav .nav-links { display: flex; gap: 1.6rem; align-items: center; }
     nav .nav-links a {
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       transition: color 0.2s;
     }
@@ -91,88 +144,110 @@
     .hamburger {
       display: none;
       flex-direction: column;
+      justify-content: center;
       gap: 5px;
       cursor: pointer;
       background: none;
       border: none;
-      padding: 4px;
+      padding: 8px;
+      border-radius: 6px;
+      color: var(--text);
     }
     .hamburger span {
+      display: block;
       width: 22px;
       height: 2px;
-      background: var(--text);
+      background: currentColor;
       border-radius: 2px;
-      transition: 0.3s;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .hamburger[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .hamburger[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
 
     /* ── SECTIONS ── */
+    main { display: block; }
     section {
-      max-width: 1000px;
+      max-width: var(--max);
       margin: 0 auto;
       padding: 5rem 2rem 2rem;
     }
 
     .section-title {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.16em;
       color: var(--accent);
       margin-bottom: 2rem;
       font-weight: 600;
     }
 
-    h1 { font-size: 3.2rem; color: var(--text-heading); line-height: 1.15; letter-spacing: -0.03em; }
-    h2 { font-size: 1.4rem; color: var(--text-heading); letter-spacing: -0.01em; }
-    h3 { font-size: 1.1rem; color: var(--text-heading); }
+    h1 { font-size: clamp(2.4rem, 5vw, 3.2rem); color: var(--text-heading); line-height: 1.12; letter-spacing: -0.03em; }
+    h2 { font-size: 1.35rem; color: var(--text-heading); letter-spacing: -0.01em; }
+    h3 { font-size: 1.05rem; color: var(--text-heading); }
 
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding-top: 56px;
+      padding-top: var(--nav-h);
     }
     .hero .subtitle {
       font-family: var(--mono);
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin-bottom: 0.85rem;
       font-weight: 400;
     }
-    .hero h1 { margin-bottom: 1.5rem; }
+    .hero h1 { margin-bottom: 0.85rem; }
+    .hero .role {
+      color: var(--accent);
+      font-weight: 400;
+      margin-bottom: 1.35rem;
+      font-size: 1.25rem;
+    }
     .hero .summary {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--text-muted);
-      max-width: 650px;
+      max-width: 640px;
       line-height: 1.8;
       margin-bottom: 2rem;
     }
     .hero .links {
       display: flex;
-      gap: 1rem;
+      gap: 0.85rem;
       flex-wrap: wrap;
     }
     .hero .links a {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.6rem 1.2rem;
+      padding: 0.55rem 1.1rem;
       border: 1px solid var(--border);
       border-radius: 8px;
       color: var(--text);
-      font-size: 0.9rem;
-      transition: border-color 0.2s, background 0.2s;
+      font-size: 0.88rem;
+      background: var(--bg-elevated);
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
     }
     .hero .links a:hover {
-      border-color: var(--accent);
-      background: rgba(79, 195, 247, 0.05);
+      border-color: var(--accent-dim);
+      background: var(--accent-glow);
+      box-shadow: 0 0 0 1px rgba(61, 214, 198, 0.08);
       opacity: 1;
     }
     .hero .links svg {
       width: 18px;
       height: 18px;
       fill: currentColor;
+      flex-shrink: 0;
     }
 
     /* ── EXPERIENCE ── */
@@ -186,11 +261,12 @@
       content: '';
       position: absolute;
       left: -6px;
-      top: 6px;
+      top: 8px;
       width: 10px;
       height: 10px;
       border-radius: 50%;
       background: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
     }
     .exp-header {
       display: flex;
@@ -198,7 +274,7 @@
       align-items: baseline;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.25rem;
     }
     .exp-header h3 { font-weight: 600; }
     .exp-role {
@@ -209,16 +285,13 @@
     }
     .exp-date {
       font-family: var(--mono);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
-    .exp-item ul {
-      list-style: none;
-      padding: 0;
-    }
+    .exp-item ul { list-style: none; padding: 0; }
     .exp-item li {
       position: relative;
-      padding-left: 1.2rem;
+      padding-left: 1.15rem;
       margin-bottom: 0.5rem;
       color: var(--text-muted);
       font-size: 0.93rem;
@@ -229,30 +302,30 @@
       left: 0;
       color: var(--accent);
     }
+    .exp-item strong { color: var(--text); font-weight: 600; }
 
     /* ── PROJECTS ── */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.15rem;
     }
     .project-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s, background 0.2s;
+      border-radius: var(--radius);
+      padding: 1.4rem 1.45rem;
+      transition: border-color 0.2s, transform 0.2s, background 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
     }
     .project-card:hover {
-      border-color: var(--accent-dim);
-      transform: translateY(-2px);
+      border-color: var(--border-strong);
+      transform: translateY(-3px);
       background: var(--bg-card-hover);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
     }
-    .project-card h3 {
-      margin-bottom: 0.3rem;
-    }
+    .project-card h3 { margin-bottom: 0.35rem; }
     .project-card h3 a {
       color: var(--text-heading);
       transition: color 0.2s;
@@ -261,44 +334,51 @@
     .project-card .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 0.8rem;
+      gap: 0.35rem;
+      margin-bottom: 0.75rem;
     }
     .tag {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-family: var(--mono);
-      padding: 0.2rem 0.55rem;
+      padding: 0.18rem 0.5rem;
       border-radius: 4px;
       background: var(--tag-bg);
       color: var(--tag-text);
+      border: 1px solid rgba(61, 214, 198, 0.18);
     }
     .project-card p {
       color: var(--text-muted);
       font-size: 0.9rem;
       flex: 1;
     }
-    .project-card .project-link {
+    .project-card .project-links {
       margin-top: 1rem;
-      font-size: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+    .project-card .project-link {
+      font-size: 0.84rem;
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
+      font-weight: 500;
     }
 
     /* ── SKILLS ── */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.1rem;
     }
     .skill-group {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.3rem;
+      border-radius: var(--radius);
+      padding: 1.25rem;
     }
     .skill-group h3 {
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--accent);
@@ -311,17 +391,17 @@
       gap: 0.4rem;
     }
     .skill-tag {
-      font-size: 0.82rem;
-      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      padding: 0.28rem 0.65rem;
       border-radius: 6px;
-      background: rgba(79, 195, 247, 0.08);
+      background: rgba(61, 214, 198, 0.06);
       color: var(--text);
       border: 1px solid var(--border);
     }
     .skill-tag.primary {
       background: var(--tag-bg);
       color: var(--accent);
-      border-color: var(--accent-dim);
+      border-color: rgba(61, 214, 198, 0.28);
       font-weight: 500;
     }
 
@@ -329,8 +409,8 @@
     .edu-item {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
       margin-bottom: 1rem;
     }
     .edu-header {
@@ -349,35 +429,45 @@
     .edu-details {
       color: var(--text-muted);
       font-size: 0.9rem;
-      margin-top: 0.5rem;
+      margin-top: 0.55rem;
     }
+    .edu-details strong { color: var(--text); }
 
     /* ── PUBLICATIONS ── */
     .pub-item {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.3rem 1.5rem;
-      margin-bottom: 0.8rem;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 0.75rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .pub-item:hover { border-color: var(--accent-dim); }
-    .pub-info { flex: 1; }
-    .pub-venue {
+    .pub-item:hover {
+      border-color: var(--border-strong);
+      background: var(--bg-card-hover);
+    }
+    .pub-info { flex: 1; min-width: 0; }
+    .pub-title {
+      display: block;
       font-weight: 600;
       color: var(--text-heading);
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: 0.35rem;
     }
-    .pub-role {
+    .pub-meta {
       font-size: 0.85rem;
       color: var(--text-muted);
     }
+    .pub-venue { color: var(--accent); font-weight: 500; }
     .pub-link {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       white-space: nowrap;
+      font-weight: 500;
     }
 
     /* ── CONTACT FOOTER ── */
@@ -385,25 +475,26 @@
       text-align: center;
       padding: 4rem 2rem 2rem;
     }
-    .contact-section h2 { margin-bottom: 1rem; }
+    .contact-section h2 { margin-bottom: 0.85rem; }
     .contact-section p { color: var(--text-muted); margin-bottom: 1.5rem; }
     .contact-links {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.85rem;
       flex-wrap: wrap;
     }
     .contact-links a {
-      padding: 0.55rem 1.3rem;
+      padding: 0.55rem 1.25rem;
       border: 1px solid var(--border);
       border-radius: 8px;
       color: var(--text);
       font-size: 0.9rem;
+      background: var(--bg-elevated);
       transition: border-color 0.2s, background 0.2s;
     }
     .contact-links a:hover {
-      border-color: var(--accent);
-      background: rgba(79, 195, 247, 0.05);
+      border-color: var(--accent-dim);
+      background: var(--accent-glow);
       opacity: 1;
     }
 
@@ -411,40 +502,63 @@
       text-align: center;
       padding: 2rem;
       color: var(--text-muted);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       border-top: 1px solid var(--border);
       margin-top: 2rem;
     }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      h1 { font-size: 2.2rem; }
-      section { padding: 4rem 1.2rem 1.5rem; }
-      nav .nav-links { display: none; }
-      nav .nav-links.open {
-        display: flex;
+      section { padding: 4rem 1.15rem 1.5rem; }
+      nav { padding: 0 1.15rem; }
+      nav .nav-links {
+        display: none;
         flex-direction: column;
+        align-items: flex-start;
         position: absolute;
-        top: 56px;
+        top: var(--nav-h);
         left: 0;
         right: 0;
-        background: rgba(15, 15, 15, 0.95);
-        backdrop-filter: blur(12px);
-        padding: 1rem 2rem;
+        background: rgba(11, 15, 20, 0.97);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 1rem 1.35rem 1.25rem;
         border-bottom: 1px solid var(--border);
-        gap: 1rem;
+        gap: 0.15rem;
+      }
+      nav .nav-links.open { display: flex; }
+      nav .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 0.65rem 0.25rem;
+        font-size: 0.9rem;
+        text-transform: none;
+        letter-spacing: 0.01em;
       }
       .hamburger { display: flex; }
-      .exp-header { flex-direction: column; }
+      .exp-header,
       .edu-header { flex-direction: column; }
       .projects-grid { grid-template-columns: 1fr; }
+      .pub-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .fade-in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
     }
 
     /* ── FADE IN ── */
     .fade-in {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
     .fade-in.visible {
       opacity: 1;
@@ -454,14 +568,23 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <!-- NAV -->
-<nav>
+<nav aria-label="Primary">
   <div class="nav-inner">
-    <div class="logo">O<span>.</span>A</div>
-    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+    <a href="#" class="logo" aria-label="Omar Alaaeldein — home">O<span>.</span>A</a>
+    <button
+      type="button"
+      class="hamburger"
+      id="nav-toggle"
+      aria-label="Open menu"
+      aria-controls="nav-menu"
+      aria-expanded="false"
+    >
       <span></span><span></span><span></span>
     </button>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-menu">
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
@@ -472,26 +595,28 @@
   </div>
 </nav>
 
+<main id="main">
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero" aria-label="Introduction">
   <div class="fade-in">
     <p class="subtitle">Hi, I'm</p>
     <h1>Omar Alaaeldein</h1>
-    <h2 style="color: var(--accent); font-weight: 400; margin-bottom: 1.2rem; font-size: 1.3rem;">Data Scientist</h2>
+    <h2 class="role">Data Scientist</h2>
     <p class="summary">
-      Full-stack Data Scientist with expertise in low-latency and resource-constrained environments (Edge AI/IoT, FinTech). Experienced across the ML lifecycle - from framing unstructured problems to deploying real-time inference engines and scalable ETL pipelines in production.
+      Full-stack Data Scientist with expertise in low-latency and resource-constrained environments (Edge AI/IoT, FinTech). Experienced across the ML lifecycle — from framing unstructured problems to deploying real-time inference engines and scalable ETL pipelines in production.
     </p>
     <div class="links">
-      <a href="https://linkedin.com/in/omar-alaaeldein" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+      <a href="https://linkedin.com/in/omar-alaaeldein" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
         LinkedIn
       </a>
-      <a href="https://github.com/OmarAlaaeldein" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+      <a href="https://github.com/OmarAlaaeldein" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
         GitHub
       </a>
-      <a href="https://orcid.org/0000-0001-8110-727X" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 5a.9.9 0 110 1.8.9.9 0 010-1.8zm-.6 3h1.2v7h-1.2v-7zm3.1 0h2.6c2.2 0 3.4 1.5 3.4 3.5s-1.2 3.5-3.4 3.5H13v-7zm1.2 1v5h1.3c1.5 0 2.3-.9 2.3-2.5S17 11 15.5 11h-1.3z"/></svg>
+      <a href="https://orcid.org/0000-0001-8110-727X" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 5a.9.9 0 110 1.8.9.9 0 010-1.8zm-.6 3h1.2v7h-1.2v-7zm3.1 0h2.6c2.2 0 3.4 1.5 3.4 3.5s-1.2 3.5-3.4 3.5H13v-7zm1.2 1v5h1.3c1.5 0 2.3-.9 2.3-2.5S17 11 15.5 11h-1.3z"/></svg>
         ORCID
       </a>
     </div>
@@ -546,36 +671,72 @@
 <section id="projects">
   <p class="section-title fade-in">Projects / Open-Source</p>
   <div class="projects-grid">
-    <div class="project-card fade-in">
-      <h3><a href="https://github.com/OmarAlaaeldein/Unit-Test-Recommender" target="_blank" rel="noopener">Unit Test Recommendation Engine</a></h3>
+
+    <article class="project-card fade-in">
+      <h3><a href="https://github.com/OmarAlaaeldein/Sentinel-Chimp" target="_blank" rel="noopener noreferrer">Sentinel — Options Terminal</a></h3>
+      <div class="tags">
+        <span class="tag">Bjerksund-Stensland</span>
+        <span class="tag">GARCH / EWMA</span>
+        <span class="tag">Python / Tk</span>
+      </div>
+      <p>Open-source market terminal for retail traders: American options via Bjerksund-Stensland (2002), EWMA/GARCH volatility, probability cones, and a tradeable options finder with liquidity filters — wrapped in a modern dark Tk UI.</p>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/OmarAlaaeldein/Sentinel-Chimp" target="_blank" rel="noopener noreferrer">View on GitHub &rarr;</a>
+      </div>
+    </article>
+
+    <article class="project-card fade-in">
+      <h3><a href="https://github.com/OmarAlaaeldein/vault-graph-html" target="_blank" rel="noopener noreferrer">vault-graph-html</a></h3>
+      <div class="tags">
+        <span class="tag">Knowledge Graph</span>
+        <span class="tag">Obsidian</span>
+        <span class="tag">Vanilla JS</span>
+      </div>
+      <p>Turn an Obsidian vault into one self-contained interactive HTML knowledge graph — force layout, search, note/source embeds, and git stamps. No CDN, no build step; works offline on a phone.</p>
+      <div class="project-links">
+        <a class="project-link" href="https://omaralaaeldein.github.io/vault-graph-html/" target="_blank" rel="noopener noreferrer">Live demo &rarr;</a>
+        <a class="project-link" href="https://github.com/OmarAlaaeldein/vault-graph-html" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
+      </div>
+    </article>
+
+    <article class="project-card fade-in">
+      <h3><a href="https://github.com/OmarAlaaeldein/OpenTailcat" target="_blank" rel="noopener noreferrer">OpenTailcat</a></h3>
+      <div class="tags">
+        <span class="tag">Android</span>
+        <span class="tag">Go / Kotlin</span>
+        <span class="tag">VPN</span>
+      </div>
+      <p>Independent Android client for the control-plane-free Tailcat protocol — pairs with a user-controlled gateway from a compact <code>tc…</code> token. Community project; not affiliated with Tailscale.</p>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/OmarAlaaeldein/OpenTailcat" target="_blank" rel="noopener noreferrer">View on GitHub &rarr;</a>
+      </div>
+    </article>
+
+    <article class="project-card fade-in">
+      <h3><a href="https://github.com/OmarAlaaeldein/Unit-Test-Recommender" target="_blank" rel="noopener noreferrer">Unit Test Recommendation Engine</a></h3>
       <div class="tags">
         <span class="tag">LLMs</span>
         <span class="tag">Semantic Search</span>
         <span class="tag">Developer Tooling</span>
       </div>
       <p>Fine-tuned CodeT5 LLMs using LoRA to automate context-aware test generation. Built a high-performance semantic search backend using FAISS indexing with &lt;50ms latency.</p>
-      <a class="project-link" href="https://github.com/OmarAlaaeldein/Unit-Test-Recommender" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-    </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/OmarAlaaeldein/Unit-Test-Recommender" target="_blank" rel="noopener noreferrer">View on GitHub &rarr;</a>
+      </div>
+    </article>
 
-    <div class="project-card fade-in">
-      <h3><a href="https://github.com/OmarAlaaeldein/Arena-Simulation-Production-Line-Optimization" target="_blank" rel="noopener">Production Line Optimization</a></h3>
+    <article class="project-card fade-in">
+      <h3><a href="https://github.com/OmarAlaaeldein/Arena-Simulation-Production-Line-Optimization" target="_blank" rel="noopener noreferrer">Production Line Optimization</a></h3>
       <div class="tags">
         <span class="tag">Simulation</span>
         <span class="tag">Cost-Benefit Analysis</span>
       </div>
       <p>Built discrete-event simulation in Rockwell Arena for a bottlenecked assembly line. Analyzed scenarios across 30 replications, recommending batching for 25&ndash;30% long-term waste reduction.</p>
-      <a class="project-link" href="https://github.com/OmarAlaaeldein/Arena-Simulation-Production-Line-Optimization" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-    </div>
-
-    <div class="project-card fade-in">
-      <h3><a href="https://github.com/OmarAlaaeldein/Sentinel-Chimp" target="_blank" rel="noopener">Sentinel - AI Financial Analytics</a></h3>
-      <div class="tags">
-        <span class="tag">Real-Time Data</span>
-        <span class="tag">Financial ML</span>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/OmarAlaaeldein/Arena-Simulation-Production-Line-Optimization" target="_blank" rel="noopener noreferrer">View on GitHub &rarr;</a>
       </div>
-      <p>Engineered a multi-threaded trading terminal combining technical indicators with FinBERT sentiment analysis. Implemented pricing models for volatility arbitrage with 3D surface visualization.</p>
-      <a class="project-link" href="https://github.com/OmarAlaaeldein/Sentinel-Chimp" target="_blank" rel="noopener">View on GitHub &rarr;</a>
-    </div>
+    </article>
+
   </div>
 </section>
 
@@ -590,6 +751,8 @@
         <span class="skill-tag primary">MATLAB</span>
         <span class="skill-tag">C</span>
         <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Kotlin</span>
+        <span class="skill-tag">Go</span>
       </div>
     </div>
     <div class="skill-group fade-in">
@@ -616,6 +779,8 @@
         <span class="skill-tag primary">Git</span>
         <span class="skill-tag primary">Docker</span>
         <span class="skill-tag primary">Arena</span>
+        <span class="skill-tag">GitHub Actions</span>
+        <span class="skill-tag">pytest</span>
         <span class="skill-tag">LaTeX</span>
         <span class="skill-tag">Arduino</span>
         <span class="skill-tag">SOLIDWORKS</span>
@@ -647,7 +812,7 @@
     <p class="edu-details">
       <strong>Focus:</strong> Applied Machine Learning for Energy Systems<br>
       <strong>Relevant Coursework:</strong> Representation Learning (Mila - IFT 6135)<br>
-      <strong>Expected Graduation:</strong> Summer 2026
+      <strong>Expected Graduation:</strong> 2026
     </p>
   </div>
 
@@ -669,18 +834,18 @@
 
   <div class="pub-item fade-in">
     <div class="pub-info">
-      <span class="pub-venue">IEEE IMCOM 2022</span>
-      <span class="pub-role"> -Lead Author</span>
+      <span class="pub-title">Analysis of COVID-19 Using Imaging and Audio Modalities</span>
+      <span class="pub-meta"><span class="pub-venue">IEEE IMCOM 2022</span> — Lead Author</span>
     </div>
-    <a class="pub-link" href="https://ieeexplore.ieee.org/document/9721730" target="_blank" rel="noopener">View Paper &rarr;</a>
+    <a class="pub-link" href="https://ieeexplore.ieee.org/document/9721730" target="_blank" rel="noopener noreferrer">View Paper &rarr;</a>
   </div>
 
   <div class="pub-item fade-in">
     <div class="pub-info">
-      <span class="pub-venue">IEEE MIUCC 2022</span>
-      <span class="pub-role"> -Sole Author</span>
+      <span class="pub-title">Gender Classification from Tweets Using LSTMs and Transformers</span>
+      <span class="pub-meta"><span class="pub-venue">IEEE MIUCC 2022</span> — Sole Author</span>
     </div>
-    <a class="pub-link" href="https://ieeexplore.ieee.org/document/9781702" target="_blank" rel="noopener">View Paper &rarr;</a>
+    <a class="pub-link" href="https://ieeexplore.ieee.org/document/9781702" target="_blank" rel="noopener noreferrer">View Paper &rarr;</a>
   </div>
 </section>
 
@@ -695,28 +860,45 @@
   </div>
 </section>
 
+</main>
+
 <footer>
   <p>Built by Omar Alaaeldein</p>
 </footer>
 
 <script>
-  // Intersection Observer for fade-in animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  function setMenuOpen(open) {
+    navMenu.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
 
-  // Close mobile nav on link click
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.querySelector('.nav-links').classList.remove('open');
-    });
+  navToggle.addEventListener('click', () => {
+    setMenuOpen(!navMenu.classList.contains('open'));
   });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => setMenuOpen(false));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setMenuOpen(false);
+  });
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+  }
 </script>
 
 </body>
