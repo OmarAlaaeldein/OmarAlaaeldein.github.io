@@ -364,6 +364,23 @@
       gap: 0.3rem;
       font-weight: 500;
     }
+    .project-card.featured {
+      grid-column: 1 / -1;
+    }
+    .project-shots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.65rem;
+      margin: 0.85rem 0 0.15rem;
+    }
+    .project-shots img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #0b1220;
+    }
 
     /* ── SKILLS ── */
     .skills-grid {
@@ -672,7 +689,7 @@
   <p class="section-title fade-in">Projects / Open-Source</p>
   <div class="projects-grid">
 
-    <article class="project-card fade-in">
+    <article class="project-card featured fade-in">
       <h3><a href="https://github.com/OmarAlaaeldein/Sentinel-Chimp" target="_blank" rel="noopener noreferrer">Sentinel — Options Terminal</a></h3>
       <div class="tags">
         <span class="tag">Bjerksund-Stensland</span>
@@ -680,6 +697,10 @@
         <span class="tag">Python / Tk</span>
       </div>
       <p>Open-source market terminal for retail traders: American options via Bjerksund-Stensland (2002), EWMA/GARCH volatility, probability cones, and a tradeable options finder with liquidity filters — wrapped in a modern dark Tk UI.</p>
+      <div class="project-shots">
+        <img src="assets/sentinel-main-terminal.png" alt="Sentinel main terminal — AMD chart, technicals, and probability cone" width="1280" height="800" loading="lazy">
+        <img src="assets/sentinel-options-explorer.png" alt="Sentinel Options Explorer — tradeable-edge scan results" width="1280" height="800" loading="lazy">
+      </div>
       <div class="project-links">
         <a class="project-link" href="https://github.com/OmarAlaaeldein/Sentinel-Chimp" target="_blank" rel="noopener noreferrer">View on GitHub &rarr;</a>
       </div>
